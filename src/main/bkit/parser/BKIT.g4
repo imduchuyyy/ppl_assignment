@@ -27,7 +27,25 @@ options {
 	language = Python3;
 }
 
-program: ID;
+program: (var_declare | func_declare)* EOF;
+
+var_declare: VAR COLON ids_list SEMI;
+
+ids_list: (id_declare) (COMMA id_declare)*;
+
+id_declare: ID | (ID ASSIGN TYPE_LIST) | array_declare;
+
+array_declare: ARRAY_ID | (ARRAY_ID ASSIGN ARRAY);
+
+ARRAY_ID: ID (LSB INTLIT RSB)+;
+
+TYPE_LIST: INTLIT | FLOATLIT | BOOLEAN | STRING;
+
+func_declare: header_stm paramater_stm body_stm;
+
+header_stm: FUNCTION COLON ID;
+paramater_stm: PARAMETER COLON ids_list;
+body_stm: BODY COLON ENDBODY DOT;
 
 // IDENTIFIER
 ID: [a-z][a-zA-Z0-9_]*;
@@ -53,9 +71,11 @@ VAR: 'Var';
 WHILE: 'While';
 TRUE: 'True';
 FALSE: 'False';
-ENDDO: 'ENDO';
+ENDDO: 'ENDDO';
 
 // OPERATORS
+ASSIGN: '=';
+
 ADDOP: '+';
 ADDOPDOT: '+.';
 
@@ -107,19 +127,30 @@ LP: '{';
 RP: '}';
 
 // LITERALS
-DEC: [1-9][0-9]+ | '0';
+DEC: [1-9][0-9]* | '0';
 HEX: '0' [Xx][0-9][A-F]+;
 OCT: '0' [Oo][0-7]+;
-INILIT: DEC | HEX | OCT;
+INTLIT: DEC | HEX | OCT;
 
-SUBFLOATLIT: INILIT [Ee]? [+-]? INILIT;
+SUBFLOATLIT: INTLIT [Ee]? [+-]? INTLIT;
 FLOATLIT: SUBFLOATLIT '.' SUBFLOATLIT;
 
 BOOLEAN: TRUE | FALSE;
 
 STRING:;
 
-WS: [ \t\r\n]+ -> skip; // skip spaces, tabs, newlines
+INTLIT_LIST: INTLIT (COMMA INTLIT)*;
+FLOATLIT_LIST: FLOATLIT (COMMA FLOATLIT)*;
+STRING_LIST: STRING ( COMMA STRING)*;
+BOOLEAN_LIST: BOOLEAN (COMMA BOOLEAN)*;
+
+ARRAY: (LP INTLIT_LIST RP)
+	| ( LP FLOATLIT_LIST RP)
+	| ( LP STRING_LIST RP)
+	| ( LP BOOLEAN_LIST RP); // fail
+
+WS: [ \t\r\n]+ -> skip;
+// skip spaces, tabs, newlines
 
 ERROR_CHAR: .;
 UNCLOSE_STRING: .;

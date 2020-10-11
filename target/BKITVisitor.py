@@ -14,5 +14,45 @@ class BKITVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by BKITParser#var_declare.
+    def visitVar_declare(self, ctx:BKITParser.Var_declareContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by BKITParser#ids_list.
+    def visitIds_list(self, ctx:BKITParser.Ids_listContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by BKITParser#id_declare.
+    def visitId_declare(self, ctx:BKITParser.Id_declareContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by BKITParser#array_declare.
+    def visitArray_declare(self, ctx:BKITParser.Array_declareContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by BKITParser#func_declare.
+    def visitFunc_declare(self, ctx:BKITParser.Func_declareContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by BKITParser#header_stm.
+    def visitHeader_stm(self, ctx:BKITParser.Header_stmContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by BKITParser#paramater_stm.
+    def visitParamater_stm(self, ctx:BKITParser.Paramater_stmContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by BKITParser#body_stm.
+    def visitBody_stm(self, ctx:BKITParser.Body_stmContext):
+        return self.visitChildren(ctx)
+
+
 
 del BKITParser
