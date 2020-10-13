@@ -11,7 +11,7 @@ else:
 
 def serializedATN():
     with StringIO() as buf:
-        buf.write("\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3L")
+        buf.write("\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3H")
         buf.write("K\4\2\t\2\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b")
         buf.write("\t\b\4\t\t\t\4\n\t\n\3\2\3\2\7\2\27\n\2\f\2\16\2\32\13")
         buf.write("\2\3\2\3\2\3\3\3\3\3\3\3\3\3\3\3\4\3\4\3\4\7\4&\n\4\f")
@@ -29,7 +29,7 @@ def serializedATN():
         buf.write("\2\2\2)\'\3\2\2\2*\60\7\5\2\2+,\7\5\2\2,-\7\33\2\2-\60")
         buf.write("\7\4\2\2.\60\5\n\6\2/*\3\2\2\2/+\3\2\2\2/.\3\2\2\2\60")
         buf.write("\t\3\2\2\2\61\66\7\3\2\2\62\63\7\3\2\2\63\64\7\33\2\2")
-        buf.write("\64\66\7F\2\2\65\61\3\2\2\2\65\62\3\2\2\2\66\13\3\2\2")
+        buf.write("\64\66\7B\2\2\65\61\3\2\2\2\65\62\3\2\2\2\66\13\3\2\2")
         buf.write("\2\679\5\16\b\28:\5\20\t\298\3\2\2\29:\3\2\2\2:;\3\2\2")
         buf.write("\2;<\5\22\n\2<\r\3\2\2\2=>\7\21\2\2>?\7\67\2\2?@\7\5\2")
         buf.write("\2@\17\3\2\2\2AB\7\23\2\2BC\7\67\2\2CD\5\6\4\2D\21\3\2")
@@ -71,8 +71,7 @@ class BKITParser ( Parser ):
                       "GREATEOREQUALOP", "GREATEOREQUALOPDOT", "LB", "RB", 
                       "LSB", "RSB", "COLON", "DOT", "COMMA", "SEMI", "LP", 
                       "RP", "INTLIT", "SUBFLOATLIT", "FLOATLIT", "BOOLEAN", 
-                      "STRINGLIT", "INTLIT_LIST", "FLOATLIT_LIST", "STRING_LIST", 
-                      "BOOLEAN_LIST", "ARRAY", "WS", "COMMENT", "ERROR_CHAR", 
+                      "STRINGLIT", "ARRAY", "WS", "COMMENT", "ERROR_CHAR", 
                       "UNCLOSE_STRING", "ILLEGAL_ESCAPE", "UNTERMINATED_COMMENT" ]
 
     RULE_program = 0
@@ -152,17 +151,13 @@ class BKITParser ( Parser ):
     FLOATLIT=61
     BOOLEAN=62
     STRINGLIT=63
-    INTLIT_LIST=64
-    FLOATLIT_LIST=65
-    STRING_LIST=66
-    BOOLEAN_LIST=67
-    ARRAY=68
-    WS=69
-    COMMENT=70
-    ERROR_CHAR=71
-    UNCLOSE_STRING=72
-    ILLEGAL_ESCAPE=73
-    UNTERMINATED_COMMENT=74
+    ARRAY=64
+    WS=65
+    COMMENT=66
+    ERROR_CHAR=67
+    UNCLOSE_STRING=68
+    ILLEGAL_ESCAPE=69
+    UNTERMINATED_COMMENT=70
 
     def __init__(self, input:TokenStream, output:TextIO = sys.stdout):
         super().__init__(input, output)

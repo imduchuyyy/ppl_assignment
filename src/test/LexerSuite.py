@@ -71,26 +71,26 @@ class LexerSuite(unittest.TestCase):
     def test_string_type_with_many_character(self):
         self.assertTrue(TestLexer.checkLexeme(""" "hello worlds" """,""""hello worlds",<EOF>""",123))
 
-    # def test_string_type_with_backspace_character(self):
-    #     self.assertTrue(TestLexer.checkLexeme(""" "hello worlds \b" """,""""hello worlds",<EOF>""",124))
+    def test_string_type_with_backspace_character(self):
+        self.assertTrue(TestLexer.checkLexeme(""" "hello\\b worlds" """, """"hello\\b worlds",<EOF>""",124))
 
-    # def test_string_type_with_from_feed_character(self):
-    #     self.assertTrue(TestLexer.checkLexeme(""" "hello worlds" """,""""hello worlds",<EOF>""",125))
+    def test_string_type_with_from_feed_character(self):
+        self.assertTrue(TestLexer.checkLexeme(""" "hello\\f worlds" """, """"hello\\f worlds",<EOF>""",125))
 
-    # def test_string_type_with_many_carriage_return_character(self):
-    #     self.assertTrue(TestLexer.checkLexeme(""" "hello worlds" """,""""hello worlds",<EOF>""",126))
+    def test_string_type_with_many_carriage_return_character(self):
+        self.assertTrue(TestLexer.checkLexeme(""" "hello\\r worlds" """, """"hello\\r worlds",<EOF>""",126))
     
-    # def test_string_type_with_newline_character(self):
-    #     self.assertTrue(TestLexer.checkLexeme(""" "hello worlds" """,""""hello worlds",<EOF>""",127))
+    def test_string_type_with_newline_character(self):
+        self.assertTrue(TestLexer.checkLexeme(""" "hello\\n worlds" """, """"hello\\n worlds",<EOF>""",127))
 
-    # def test_string_type_with_horizontal_tab_character(self):
-    #     self.assertTrue(TestLexer.checkLexeme(""" "hello worlds" """,""""hello worlds",<EOF>""",128))
+    def test_string_type_with_horizontal_tab_character(self):
+        self.assertTrue(TestLexer.checkLexeme(""" "hello\\t worlds" """, """"hello\\t worlds",<EOF>""",128))
 
-    # def test_string_type_with_sing_quote_character(self):
-    #     self.assertTrue(TestLexer.checkLexeme(""" "hello worlds" """,""""hello worlds",<EOF>""",129))
+    def test_string_type_with_sing_quote_character(self):
+        self.assertTrue(TestLexer.checkLexeme(""" "hello\\' worlds" """, """"hello\\' worlds",<EOF>""",129))
 
-    # def test_string_type_with_backslash_character(self):
-    #     self.assertTrue(TestLexer.checkLexeme(""" "hello worlds" """,""""hello worlds",<EOF>""",130))
+    def test_string_type_with_backslash_character(self):
+        self.assertTrue(TestLexer.checkLexeme(""" "hello worlds" """, """"hello worlds",<EOF>""",130))
 
     def test_body_keyword(self):
         self.assertTrue(TestLexer.checkLexeme("Body","Body,<EOF>",131))
@@ -120,28 +120,70 @@ class LexerSuite(unittest.TestCase):
         self.assertTrue(TestLexer.checkLexeme(">>=",">,>=,<EOF>",139))
 
     def test_operator_8(self):
-        self.assertTrue(TestLexer.checkLexeme(">>=",">,>=,<EOF>",139))
+        self.assertTrue(TestLexer.checkLexeme(">>=",">,>=,<EOF>",140))
 
     def test_float_without_decimal_part(self):
-        self.assertTrue(TestLexer.checkLexeme("132.","132.,<EOF>",140))
-
-    # def test_lessop(self):
-    #     self.assertTrue(TestLexer.checkLexeme("<","<,<EOF>",110))
+        self.assertTrue(TestLexer.checkLexeme("132.","132.,<EOF>",141))
     
-    # def test_true_keyword(self):
-    #     self.assertTrue(TestLexer.checkLexeme("True","True,<EOF>",111))
+    def test_return_stm(self):
+        self.assertTrue(TestLexer.checkLexeme("Return 10a","Return,10,a,<EOF>",142))
 
-    # def test_false_keyword(self):
-    #     self.assertTrue(TestLexer.checkLexeme("False","False,<EOF>",112))
+    def test_time(self):
+        self.assertTrue(TestLexer.checkLexeme("12:10 p.m","12,:,10,p,.,m,<EOF>",143))
+
+    def test_power(self):
+        self.assertTrue(TestLexer.checkLexeme("12^10","12,Error Token ^",144))
     
-    # def test_keyword_3(self):
-    #     self.assertTrue(TestLexer.checkLexeme("Continue Do","Continue,Do,<EOF>",113))
-
-    # def test_keyword_4(self):
-    #     self.assertTrue(TestLexer.checkLexeme("Parameter","Parameter,<EOF>",114))
-
-    # def test_keyword_5(self):
-    #     self.assertTrue(TestLexer.checkLexeme("Function","Function,<EOF>",115))
+    def test_array(self):
+        self.assertTrue(TestLexer.checkLexeme("a[1]","a[1],<EOF>",145))
     
-    # de
+    def test_array_with_many_interger(self):
+        self.assertTrue(TestLexer.checkLexeme("a[2]","a[2],<EOF>",146))
 
+    def test_variable_declare_1(self):
+        self.assertTrue(TestLexer.checkLexeme("Var a","Var,a,<EOF>",147))
+    
+    def test_variable_declare_2(self):
+        self.assertTrue(TestLexer.checkLexeme("Var a = 1","Var,a,=,1,<EOF>",148))
+    
+    def test_variable_declare_3(self):
+        self.assertTrue(TestLexer.checkLexeme("Var a = 1.2","Var,a,=,1.2,<EOF>",149))
+
+    def test_variable_declare_4(self):
+        self.assertTrue(TestLexer.checkLexeme("Var a[1]","Var,a[1],<EOF>",150))
+
+    def test_function_declare_1(self):
+        self.assertTrue(TestLexer.checkLexeme("Function: a","Function,:,a,<EOF>",151))
+    
+    def test_function_declare_2(self):
+        self.assertTrue(TestLexer.checkLexeme("Function: Hello","Function,:,Error Token H",152))
+
+    def test_function_declare_3(self):
+        self.assertTrue(TestLexer.checkLexeme("Function: 123","Function,:,123,<EOF>",153))
+    
+    def test_add_number_1(self):
+        self.assertTrue(TestLexer.checkLexeme("a = b + c","a,=,b,+,c,<EOF>",154))
+
+    def test_add_number_2(self):
+        self.assertTrue(TestLexer.checkLexeme("a = 1 + 2","a,=,1,+,2,<EOF>",155))
+    
+    def test_add_number_3(self):
+        self.assertTrue(TestLexer.checkLexeme("a = 1 + 2.2","a,=,1,+,2.2,<EOF>",156))
+    
+    def test_add_number_4(self):
+        self.assertTrue(TestLexer.checkLexeme("a = 1.1 + 2.2","a,=,1.1,+,2.2,<EOF>",157))
+
+    def test_sub_number_1(self):
+        self.assertTrue(TestLexer.checkLexeme("a = 1 - 2","a,=,1,-,2,<EOF>",158))
+
+    def test_sub_number_2(self):
+        self.assertTrue(TestLexer.checkLexeme("a = 1.1 - 2","a,=,1.1,-,2,<EOF>",159))
+
+    def test_mul_number(self):
+        self.assertTrue(TestLexer.checkLexeme("a = 1 * 2","a,=,1,*,2,<EOF>",160))
+
+    def test_div_number(self):
+        self.assertTrue(TestLexer.checkLexeme("a = 1 / 2","a,=,1,/,2,<EOF>",161))
+
+    def test_file_name(self):
+        self.assertTrue(TestLexer.checkLexeme("file.txt","file,.,txt,<EOF>",162))
