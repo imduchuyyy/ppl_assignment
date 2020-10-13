@@ -29,6 +29,7 @@ options {
 
 program: (var_declare | func_declare)* EOF;
 
+// VARIABLE DECLARE
 var_declare: VAR COLON ids_list SEMI;
 
 ids_list: (id_declare) (COMMA id_declare)*;
@@ -39,9 +40,10 @@ array_declare: ARRAY_ID | (ARRAY_ID ASSIGN ARRAY);
 
 ARRAY_ID: ID (LSB INTLIT RSB)+;
 
-TYPE_LIST: INTLIT | FLOATLIT | BOOLEAN | STRING;
+TYPE_LIST: INTLIT | FLOATLIT | BOOLEAN | STRINGLIT;
 
-func_declare: header_stm paramater_stm body_stm;
+// FUNCTION DECLARE
+func_declare: header_stm paramater_stm? body_stm;
 
 header_stm: FUNCTION COLON ID;
 paramater_stm: PARAMETER COLON ids_list;
@@ -137,11 +139,20 @@ FLOATLIT: SUBFLOATLIT '.' SUBFLOATLIT;
 
 BOOLEAN: TRUE | FALSE;
 
-STRING:;
+// STRING
+STRINGLIT:
+	'"' STR_CHAR* '"' {
+        self.text = self.text[1:-1];
+    };
+
+fragment STR_CHAR: STR_CHAR_NORMAL | STR_CHAR_QUOTE;
+fragment STR_CHAR_NORMAL: ~[\b\t\n\f\r'"\\] | ESC_SEQ;
+fragment ESC_SEQ: '\\' [btnfr'\\];
+fragment STR_CHAR_QUOTE: '\'"';
 
 INTLIT_LIST: INTLIT (COMMA INTLIT)*;
 FLOATLIT_LIST: FLOATLIT (COMMA FLOATLIT)*;
-STRING_LIST: STRING ( COMMA STRING)*;
+STRING_LIST: STRINGLIT ( COMMA STRINGLIT)*;
 BOOLEAN_LIST: BOOLEAN (COMMA BOOLEAN)*;
 
 ARRAY: (LP INTLIT_LIST RP)

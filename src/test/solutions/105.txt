@@ -1,1 +1,1 @@
-Error Token "
+123,<EOF>

@@ -12,28 +12,29 @@ else:
 def serializedATN():
     with StringIO() as buf:
         buf.write("\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3N")
-        buf.write("I\4\2\t\2\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b")
+        buf.write("K\4\2\t\2\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b")
         buf.write("\t\b\4\t\t\t\4\n\t\n\3\2\3\2\7\2\27\n\2\f\2\16\2\32\13")
         buf.write("\2\3\2\3\2\3\3\3\3\3\3\3\3\3\3\3\4\3\4\3\4\7\4&\n\4\f")
         buf.write("\4\16\4)\13\4\3\5\3\5\3\5\3\5\3\5\5\5\60\n\5\3\6\3\6\3")
-        buf.write("\6\3\6\5\6\66\n\6\3\7\3\7\3\7\3\7\3\b\3\b\3\b\3\b\3\t")
-        buf.write("\3\t\3\t\3\t\3\n\3\n\3\n\3\n\3\n\3\n\2\2\13\2\4\6\b\n")
-        buf.write("\f\16\20\22\2\2\2E\2\30\3\2\2\2\4\35\3\2\2\2\6\"\3\2\2")
-        buf.write("\2\b/\3\2\2\2\n\65\3\2\2\2\f\67\3\2\2\2\16;\3\2\2\2\20")
-        buf.write("?\3\2\2\2\22C\3\2\2\2\24\27\5\4\3\2\25\27\5\f\7\2\26\24")
-        buf.write("\3\2\2\2\26\25\3\2\2\2\27\32\3\2\2\2\30\26\3\2\2\2\30")
-        buf.write("\31\3\2\2\2\31\33\3\2\2\2\32\30\3\2\2\2\33\34\7\2\2\3")
-        buf.write("\34\3\3\2\2\2\35\36\7\26\2\2\36\37\7\67\2\2\37 \5\6\4")
-        buf.write("\2 !\7:\2\2!\5\3\2\2\2\"\'\5\b\5\2#$\79\2\2$&\5\b\5\2")
-        buf.write("%#\3\2\2\2&)\3\2\2\2\'%\3\2\2\2\'(\3\2\2\2(\7\3\2\2\2")
-        buf.write(")\'\3\2\2\2*\60\7\5\2\2+,\7\5\2\2,-\7\33\2\2-\60\7\4\2")
-        buf.write("\2.\60\5\n\6\2/*\3\2\2\2/+\3\2\2\2/.\3\2\2\2\60\t\3\2")
-        buf.write("\2\2\61\66\7\3\2\2\62\63\7\3\2\2\63\64\7\33\2\2\64\66")
-        buf.write("\7I\2\2\65\61\3\2\2\2\65\62\3\2\2\2\66\13\3\2\2\2\678")
-        buf.write("\5\16\b\289\5\20\t\29:\5\22\n\2:\r\3\2\2\2;<\7\21\2\2")
-        buf.write("<=\7\67\2\2=>\7\5\2\2>\17\3\2\2\2?@\7\23\2\2@A\7\67\2")
-        buf.write("\2AB\5\6\4\2B\21\3\2\2\2CD\7\6\2\2DE\7\67\2\2EF\7\f\2")
-        buf.write("\2FG\78\2\2G\23\3\2\2\2\7\26\30\'/\65")
+        buf.write("\6\3\6\5\6\66\n\6\3\7\3\7\5\7:\n\7\3\7\3\7\3\b\3\b\3\b")
+        buf.write("\3\b\3\t\3\t\3\t\3\t\3\n\3\n\3\n\3\n\3\n\3\n\2\2\13\2")
+        buf.write("\4\6\b\n\f\16\20\22\2\2\2H\2\30\3\2\2\2\4\35\3\2\2\2\6")
+        buf.write("\"\3\2\2\2\b/\3\2\2\2\n\65\3\2\2\2\f\67\3\2\2\2\16=\3")
+        buf.write("\2\2\2\20A\3\2\2\2\22E\3\2\2\2\24\27\5\4\3\2\25\27\5\f")
+        buf.write("\7\2\26\24\3\2\2\2\26\25\3\2\2\2\27\32\3\2\2\2\30\26\3")
+        buf.write("\2\2\2\30\31\3\2\2\2\31\33\3\2\2\2\32\30\3\2\2\2\33\34")
+        buf.write("\7\2\2\3\34\3\3\2\2\2\35\36\7\26\2\2\36\37\7\67\2\2\37")
+        buf.write(" \5\6\4\2 !\7:\2\2!\5\3\2\2\2\"\'\5\b\5\2#$\79\2\2$&\5")
+        buf.write("\b\5\2%#\3\2\2\2&)\3\2\2\2\'%\3\2\2\2\'(\3\2\2\2(\7\3")
+        buf.write("\2\2\2)\'\3\2\2\2*\60\7\5\2\2+,\7\5\2\2,-\7\33\2\2-\60")
+        buf.write("\7\4\2\2.\60\5\n\6\2/*\3\2\2\2/+\3\2\2\2/.\3\2\2\2\60")
+        buf.write("\t\3\2\2\2\61\66\7\3\2\2\62\63\7\3\2\2\63\64\7\33\2\2")
+        buf.write("\64\66\7I\2\2\65\61\3\2\2\2\65\62\3\2\2\2\66\13\3\2\2")
+        buf.write("\2\679\5\16\b\28:\5\20\t\298\3\2\2\29:\3\2\2\2:;\3\2\2")
+        buf.write("\2;<\5\22\n\2<\r\3\2\2\2=>\7\21\2\2>?\7\67\2\2?@\7\5\2")
+        buf.write("\2@\17\3\2\2\2AB\7\23\2\2BC\7\67\2\2CD\5\6\4\2D\21\3\2")
+        buf.write("\2\2EF\7\6\2\2FG\7\67\2\2GH\7\f\2\2HI\78\2\2I\23\3\2\2")
+        buf.write("\2\b\26\30\'/\659")
         return buf.getvalue()
 
 
@@ -70,9 +71,10 @@ class BKITParser ( Parser ):
                       "GREATEOREQUALOP", "GREATEOREQUALOPDOT", "LB", "RB", 
                       "LSB", "RSB", "COLON", "DOT", "COMMA", "SEMI", "LP", 
                       "RP", "DEC", "HEX", "OCT", "INTLIT", "SUBFLOATLIT", 
-                      "FLOATLIT", "BOOLEAN", "STRING", "INTLIT_LIST", "FLOATLIT_LIST", 
-                      "STRING_LIST", "BOOLEAN_LIST", "ARRAY", "WS", "ERROR_CHAR", 
-                      "UNCLOSE_STRING", "ILLEGAL_ESCAPE", "UNTERMINATED_COMMENT" ]
+                      "FLOATLIT", "BOOLEAN", "STRINGLIT", "INTLIT_LIST", 
+                      "FLOATLIT_LIST", "STRING_LIST", "BOOLEAN_LIST", "ARRAY", 
+                      "WS", "ERROR_CHAR", "UNCLOSE_STRING", "ILLEGAL_ESCAPE", 
+                      "UNTERMINATED_COMMENT" ]
 
     RULE_program = 0
     RULE_var_declare = 1
@@ -153,7 +155,7 @@ class BKITParser ( Parser ):
     SUBFLOATLIT=63
     FLOATLIT=64
     BOOLEAN=65
-    STRING=66
+    STRINGLIT=66
     INTLIT_LIST=67
     FLOATLIT_LIST=68
     STRING_LIST=69
@@ -506,12 +508,12 @@ class BKITParser ( Parser ):
             return self.getTypedRuleContext(BKITParser.Header_stmContext,0)
 
 
-        def paramater_stm(self):
-            return self.getTypedRuleContext(BKITParser.Paramater_stmContext,0)
-
-
         def body_stm(self):
             return self.getTypedRuleContext(BKITParser.Body_stmContext,0)
+
+
+        def paramater_stm(self):
+            return self.getTypedRuleContext(BKITParser.Paramater_stmContext,0)
 
 
         def getRuleIndex(self):
@@ -530,13 +532,20 @@ class BKITParser ( Parser ):
 
         localctx = BKITParser.Func_declareContext(self, self._ctx, self.state)
         self.enterRule(localctx, 10, self.RULE_func_declare)
+        self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 53
             self.header_stm()
-            self.state = 54
-            self.paramater_stm()
             self.state = 55
+            self._errHandler.sync(self)
+            _la = self._input.LA(1)
+            if _la==BKITParser.PARAMETER:
+                self.state = 54
+                self.paramater_stm()
+
+
+            self.state = 57
             self.body_stm()
         except RecognitionException as re:
             localctx.exception = re
@@ -580,11 +589,11 @@ class BKITParser ( Parser ):
         self.enterRule(localctx, 12, self.RULE_header_stm)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 57
-            self.match(BKITParser.FUNCTION)
-            self.state = 58
-            self.match(BKITParser.COLON)
             self.state = 59
+            self.match(BKITParser.FUNCTION)
+            self.state = 60
+            self.match(BKITParser.COLON)
+            self.state = 61
             self.match(BKITParser.ID)
         except RecognitionException as re:
             localctx.exception = re
@@ -629,11 +638,11 @@ class BKITParser ( Parser ):
         self.enterRule(localctx, 14, self.RULE_paramater_stm)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 61
-            self.match(BKITParser.PARAMETER)
-            self.state = 62
-            self.match(BKITParser.COLON)
             self.state = 63
+            self.match(BKITParser.PARAMETER)
+            self.state = 64
+            self.match(BKITParser.COLON)
+            self.state = 65
             self.ids_list()
         except RecognitionException as re:
             localctx.exception = re
@@ -680,13 +689,13 @@ class BKITParser ( Parser ):
         self.enterRule(localctx, 16, self.RULE_body_stm)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 65
-            self.match(BKITParser.BODY)
-            self.state = 66
-            self.match(BKITParser.COLON)
             self.state = 67
-            self.match(BKITParser.ENDBODY)
+            self.match(BKITParser.BODY)
             self.state = 68
+            self.match(BKITParser.COLON)
+            self.state = 69
+            self.match(BKITParser.ENDBODY)
+            self.state = 70
             self.match(BKITParser.DOT)
         except RecognitionException as re:
             localctx.exception = re

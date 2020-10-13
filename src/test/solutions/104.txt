@@ -1,1 +1,1 @@
-Var,x,;,<EOF>
+Var,<EOF>
