@@ -73,7 +73,7 @@ VAR: 'Var';
 WHILE: 'While';
 TRUE: 'True';
 FALSE: 'False';
-ENDDO: 'ENDDO';
+ENDDO: 'EndDo';
 
 // OPERATORS
 ASSIGN: '=';
@@ -129,9 +129,9 @@ LP: '{';
 RP: '}';
 
 // LITERALS
-DEC: [1-9][0-9]* | '0';
-HEX: '0' [Xx][0-9][A-F]+;
-OCT: '0' [Oo][0-7]+;
+fragment DEC: ([1-9][0-9]+) | [0-9];
+fragment HEX: ([0][Xx][0-9]+) | ([0][Xx][A-F]+);
+fragment OCT: [0][Oo][0-7]+;
 INTLIT: DEC | HEX | OCT;
 
 SUBFLOATLIT: INTLIT [Ee]? [+-]? INTLIT;
@@ -161,6 +161,7 @@ ARRAY: (LP INTLIT_LIST RP)
 	| ( LP BOOLEAN_LIST RP); // fail
 
 WS: [ \t\r\n]+ -> skip;
+COMMENT: '**' .*? '**' -> skip;
 // skip spaces, tabs, newlines
 
 ERROR_CHAR: .;
