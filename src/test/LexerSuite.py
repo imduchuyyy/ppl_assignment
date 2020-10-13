@@ -117,7 +117,13 @@ class LexerSuite(unittest.TestCase):
         self.assertTrue(TestLexer.checkLexeme(">=",">=,<EOF>",138))
     
     def test_operator_7(self):
-        self.assertTrue(TestLexer.checkLexeme(">>=",">>=,<EOF>",138))
+        self.assertTrue(TestLexer.checkLexeme(">>=",">,>=,<EOF>",139))
+
+    def test_operator_8(self):
+        self.assertTrue(TestLexer.checkLexeme(">>=",">,>=,<EOF>",139))
+
+    def test_float_without_decimal_part(self):
+        self.assertTrue(TestLexer.checkLexeme("132.","132.,<EOF>",140))
 
     # def test_lessop(self):
     #     self.assertTrue(TestLexer.checkLexeme("<","<,<EOF>",110))
