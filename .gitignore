@@ -1,2 +1,3 @@
-/solutions
-/testcases
+src/test/solutions
+src/test/testcases
+src/test/__pycache__

@@ -117,7 +117,7 @@ class LexerSuite(unittest.TestCase):
         self.assertTrue(TestLexer.checkLexeme(">=",">=,<EOF>",138))
     
     def test_operator_7(self):
-        self.assertTrue(TestLexer.checkLexeme(">>=",">,>=,<EOF>",138))
+        self.assertTrue(TestLexer.checkLexeme(">>=",">>=,<EOF>",138))
 
     # def test_lessop(self):
     #     self.assertTrue(TestLexer.checkLexeme("<","<,<EOF>",110))
