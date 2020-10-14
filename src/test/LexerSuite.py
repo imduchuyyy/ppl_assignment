@@ -20,8 +20,8 @@ class LexerSuite(unittest.TestCase):
     def test_decimal_integer(self):
         self.assertTrue(TestLexer.checkLexeme("123","123,<EOF>",106))
 
-    # def test_wrong_decimal_interger(self):
-    #     self.assertTrue(TestLexer.checkLexeme("0123","0123,<EOF>",107))
+    def test_wrong_decimal_interger(self):
+        self.assertTrue(TestLexer.checkLexeme("0123","0123,<EOF>",107))
     
     def test_hexadecimal_interger(self):
         self.assertTrue(TestLexer.checkLexeme("0x123","0x123,<EOF>",108))
@@ -187,3 +187,119 @@ class LexerSuite(unittest.TestCase):
 
     def test_file_name(self):
         self.assertTrue(TestLexer.checkLexeme("file.txt","file,.,txt,<EOF>",162))
+
+    def test_person_name(self):
+        self.assertTrue(TestLexer.checkLexeme(""" "Bui Duc Huy" """, """"Bui Duc Huy",<EOF>""",163))
+    
+    def test_body_function(self):
+        self.assertTrue(TestLexer.checkLexeme("Body: Var x = 120; EndBody", "Body,:,Var,x,=,120,;,EndBody,<EOF>",164))
+    
+    def test_assign_variable(self):
+        self.assertTrue(TestLexer.checkLexeme("a = 2", "a,=,2,<EOF>""",165))
+
+    def test_if_statement(self):
+        self.assertTrue(TestLexer.checkLexeme("If(a == b) { Return a }", "If,(,a,==,b,),{,Return,a,},<EOF>",166))
+    
+    def test_parameter_declare(self):
+        self.assertTrue(TestLexer.checkLexeme("Parameter: x, y,z; ", "Parameter,:,x,,,y,,,z,;,<EOF>",167))
+    
+    def test_string_declare(self):
+        string = """ "Bui Duc Huy" """
+        result = """"Bui Duc Huy",<EOF>"""
+        self.assertTrue(TestLexer.checkLexeme("Var x = " + string, "Var,x,=,"+result,168))
+    
+    def test_float_declare(self):
+        self.assertTrue(TestLexer.checkLexeme("Var x = 1.2", "Var,x,=,1.2,<EOF>",169))
+    
+    def test_many_colon(self):
+        self.assertTrue(TestLexer.checkLexeme(":::::::::::::::", ":,:,:,:,:,:,:,:,:,:,:,:,:,:,:,<EOF>",170))
+    
+    def test_operator_9(self):
+        self.assertTrue(TestLexer.checkLexeme("+-*/xyz", "+,-,*,/,xyz,<EOF>", 171))
+
+    def test_upper_letter(self):
+        self.assertTrue(TestLexer.checkLexeme("PPL", "Error Token P", 172))
+
+    def test_while_statement(self):
+        self.assertTrue(TestLexer.checkLexeme("While a == b Do x = 9", "While,a,==,b,Do,x,=,9,<EOF>", 173))
+    
+    def test_link(self):
+        self.assertTrue(TestLexer.checkLexeme(""" "facebook.com" """, """"facebook.com",<EOF>""",174))
+    
+    def test_birth_day(self):
+        self.assertTrue(TestLexer.checkLexeme("24/12/2000", "24,/,12,/,2000,<EOF>""",175))
+    
+    def test_variable_declare_5(self):
+        self.assertTrue(TestLexer.checkLexeme("test_variable_declare_5", "test_variable_declare_5,<EOF>",176))
+    
+    def test_wrong_token_2(self):
+        self.assertTrue(TestLexer.checkLexeme("Whitle", "Error Token W",177))
+    
+    def test_name(self):
+        self.assertTrue(TestLexer.checkLexeme("ppl database blockchain", "ppl,database,blockchain,<EOF>",178))
+    
+    def test_variable_declare_6(self):
+        self.assertTrue(TestLexer.checkLexeme("identify.", "identify,.,<EOF>",179))
+    
+    def test_operator_10(self):
+        self.assertTrue(TestLexer.checkLexeme("3 > 4", "3,>,4,<EOF>",180))
+    
+    def test_operator_11(self):
+        self.assertTrue(TestLexer.checkLexeme("3 = 5", "3,=,5,<EOF>",181))
+
+    def test_null(self):
+        self.assertTrue(TestLexer.checkLexeme("", "<EOF>",182))
+    
+    def test_(self):
+        self.assertTrue(TestLexer.checkLexeme("_", "Error Token _",183))
+    
+    def test_for_statement(self):
+        self.assertTrue(TestLexer.checkLexeme("For (i = 1; i < 10; i = i +1)", "For,(,i,=,1,;,i,<,10,;,i,=,i,+,1,),<EOF>",184))
+    
+    def test_many_dot(self):
+        self.assertTrue(TestLexer.checkLexeme("hello............abc.........", "hello,.,.,.,.,.,.,.,.,.,.,.,.,abc,.,.,.,.,.,.,.,.,.,<EOF>", 185))
+    
+    def test_number_(self):
+        self.assertTrue(TestLexer.checkLexeme("3_", "3,Error Token _",186))
+    
+    def test_diff_operator(self):
+        self.assertTrue(TestLexer.checkLexeme("!", "!,<EOF>",187))
+    
+    def test_many_opearator(self):
+        self.assertTrue(TestLexer.checkLexeme("!==", "!=,=,<EOF>",188))
+    
+    def test_many_div_operator(self):
+        self.assertTrue(TestLexer.checkLexeme("//////", "/,/,/,/,/,/,<EOF>",189))
+
+    def test_many_quotation_mark(self):
+        self.assertTrue(TestLexer.checkLexeme("" "hello""", "hello,<EOF>", 190))
+
+    def test_if_then(self):
+        self.assertTrue(TestLexer.checkLexeme("If a == b Then Return c", "If,a,==,b,Then,Return,c,<EOF>", 191))
+    
+    def test_function(self):
+        self.assertTrue(TestLexer.checkLexeme("Function: main; Body: a = a + 1; EndBody.", "Function,:,main,;,Body,:,a,=,a,+,1,;,EndBody,.,<EOF>", 192))
+    
+    def test_many_opearator_2(self):
+        self.assertTrue(TestLexer.checkLexeme("{ }{}{}{}{}{}{}{}{}{}", "{,},{,},{,},{,},{,},{,},{,},{,},{,},{,},<EOF>", 193))
+    
+    def test_many_opearator_3(self):
+        self.assertTrue(TestLexer.checkLexeme("((((((((()))))))))", "(,(,(,(,(,(,(,(,(,),),),),),),),),),<EOF>", 194))
+    
+    def test_many_identify(self):
+        self.assertTrue(TestLexer.checkLexeme("blockchain is very interesting", "blockchain,is,very,interesting,<EOF>", 195))
+    
+    def test_date(self):
+        self.assertTrue(TestLexer.checkLexeme("10:20 a.m 12/12/2020", "10,:,20,a,.,m,12,/,12,/,2020,<EOF>", 196))
+    
+    def test_id(self):
+        self.assertTrue(TestLexer.checkLexeme("mssv: 1812336", "mssv,:,1812336,<EOF>", 197))
+    
+    def test_function_call(self):
+        self.assertTrue(TestLexer.checkLexeme("main()", "main,(,),<EOF>", 198))
+    
+    def test_function_call_with_parameter(self):
+        self.assertTrue(TestLexer.checkLexeme("main(a, b, c)", "main,(,a,,,b,,,c,),<EOF>", 199))
+    
+    def test_break_continue(self):
+        self.assertTrue(TestLexer.checkLexeme("While a == b Do a = 1; Break", "While,a,==,b,Do,a,=,1,;,Break,<EOF>", 200))
