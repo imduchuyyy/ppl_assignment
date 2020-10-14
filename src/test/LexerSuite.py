@@ -18,7 +18,7 @@ class LexerSuite(unittest.TestCase):
         self.assertTrue(TestLexer.checkLexeme("Var","Var,<EOF>", 105))
 
     def test_decimal_integer(self):
-        self.assertTrue(TestLexer.checkLexeme("123","123,<EOF>",106))
+        self.assertTrue(TestLexer.checkLexeme("1.","1.,<EOF>",106))
 
     def test_wrong_decimal_interger(self):
         self.assertTrue(TestLexer.checkLexeme("0123","0123,<EOF>",107))
@@ -66,31 +66,31 @@ class LexerSuite(unittest.TestCase):
         self.assertTrue(TestLexer.checkLexeme("False True False","False,True,False,<EOF>",121))
     
     def test_string_type(self):
-        self.assertTrue(TestLexer.checkLexeme(""" "hello" """,""""hello",<EOF>""",122))
+        self.assertTrue(TestLexer.checkLexeme(""" "hello" ""","hello,<EOF>",122))
     
     def test_string_type_with_many_character(self):
-        self.assertTrue(TestLexer.checkLexeme(""" "hello worlds" """,""""hello worlds",<EOF>""",123))
+        self.assertTrue(TestLexer.checkLexeme(""" "hello worlds" ""","hello worlds,<EOF>",123))
 
     def test_string_type_with_backspace_character(self):
-        self.assertTrue(TestLexer.checkLexeme(""" "hello\\b worlds" """, """"hello\\b worlds",<EOF>""",124))
+        self.assertTrue(TestLexer.checkLexeme(""" "hello\\b worlds" """, "hello\\b worlds,<EOF>",124))
 
     def test_string_type_with_from_feed_character(self):
-        self.assertTrue(TestLexer.checkLexeme(""" "hello\\f worlds" """, """"hello\\f worlds",<EOF>""",125))
+        self.assertTrue(TestLexer.checkLexeme(""" "hello\\f worlds" """, "hello\\f worlds,<EOF>",125))
 
     def test_string_type_with_many_carriage_return_character(self):
-        self.assertTrue(TestLexer.checkLexeme(""" "hello\\r worlds" """, """"hello\\r worlds",<EOF>""",126))
+        self.assertTrue(TestLexer.checkLexeme(""" "hello\\r worlds" """, "hello\\r worlds,<EOF>",126))
     
     def test_string_type_with_newline_character(self):
-        self.assertTrue(TestLexer.checkLexeme(""" "hello\\n worlds" """, """"hello\\n worlds",<EOF>""",127))
+        self.assertTrue(TestLexer.checkLexeme(""" "hello\\n worlds" """, "hello\\n worlds,<EOF>",127))
 
     def test_string_type_with_horizontal_tab_character(self):
-        self.assertTrue(TestLexer.checkLexeme(""" "hello\\t worlds" """, """"hello\\t worlds",<EOF>""",128))
+        self.assertTrue(TestLexer.checkLexeme(""" "hello\\t worlds" """, "hello\\t worlds,<EOF>",128))
 
     def test_string_type_with_sing_quote_character(self):
-        self.assertTrue(TestLexer.checkLexeme(""" "hello\\' worlds" """, """"hello\\' worlds",<EOF>""",129))
+        self.assertTrue(TestLexer.checkLexeme(""" "hello\\' worlds" """, "hello\\' worlds,<EOF>",129))
 
     def test_string_type_with_backslash_character(self):
-        self.assertTrue(TestLexer.checkLexeme(""" "hello worlds" """, """"hello worlds",<EOF>""",130))
+        self.assertTrue(TestLexer.checkLexeme(""" "hello worlds" """, "hello worlds,<EOF>",130))
 
     def test_body_keyword(self):
         self.assertTrue(TestLexer.checkLexeme("Body","Body,<EOF>",131))
@@ -189,7 +189,7 @@ class LexerSuite(unittest.TestCase):
         self.assertTrue(TestLexer.checkLexeme("file.txt","file,.,txt,<EOF>",162))
 
     def test_person_name(self):
-        self.assertTrue(TestLexer.checkLexeme(""" "Bui Duc Huy" """, """"Bui Duc Huy",<EOF>""",163))
+        self.assertTrue(TestLexer.checkLexeme(""" "Bui Duc Huy" """, "Bui Duc Huy,<EOF>",163))
     
     def test_body_function(self):
         self.assertTrue(TestLexer.checkLexeme("Body: Var x = 120; EndBody", "Body,:,Var,x,=,120,;,EndBody,<EOF>",164))
@@ -205,7 +205,7 @@ class LexerSuite(unittest.TestCase):
     
     def test_string_declare(self):
         string = """ "Bui Duc Huy" """
-        result = """"Bui Duc Huy",<EOF>"""
+        result = "Bui Duc Huy,<EOF>"
         self.assertTrue(TestLexer.checkLexeme("Var x = " + string, "Var,x,=,"+result,168))
     
     def test_float_declare(self):
@@ -224,7 +224,7 @@ class LexerSuite(unittest.TestCase):
         self.assertTrue(TestLexer.checkLexeme("While a == b Do x = 9", "While,a,==,b,Do,x,=,9,<EOF>", 173))
     
     def test_link(self):
-        self.assertTrue(TestLexer.checkLexeme(""" "facebook.com" """, """"facebook.com",<EOF>""",174))
+        self.assertTrue(TestLexer.checkLexeme(""" "facebook.com" """, "facebook.com,<EOF>",174))
     
     def test_birth_day(self):
         self.assertTrue(TestLexer.checkLexeme("24/12/2000", "24,/,12,/,2000,<EOF>""",175))
