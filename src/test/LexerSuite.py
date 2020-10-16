@@ -161,8 +161,8 @@ class LexerSuite(unittest.TestCase):
     def test_function_declare_3(self):
         self.assertTrue(TestLexer.checkLexeme("Function: 123","Function,:,123,<EOF>",153))
     
-    def test_add_number_1(self):
-        self.assertTrue(TestLexer.checkLexeme("a = b + c","a,=,b,+,c,<EOF>",154))
+    def test_array_1(self):
+        self.assertTrue(TestLexer.checkLexeme("a[1][2]","a[1][2],<EOF>",154))
 
     def test_add_number_2(self):
         self.assertTrue(TestLexer.checkLexeme("a = 1 + 2","a,=,1,+,2,<EOF>",155))

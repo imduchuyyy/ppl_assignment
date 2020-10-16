@@ -27,7 +27,7 @@ options {
 	language = Python3;
 }
 
-program: (var_declare | func_declare)? EOF;
+program: (var_declare | func_declare)* EOF;
 
 // VARIABLE DECLARE
 var_declare: VAR COLON ids_list SEMI;
@@ -40,28 +40,32 @@ array_declare: ARRAY_ID | (ARRAY_ID ASSIGN ARRAY);
 
 ARRAY_ID: ID (LSB INTLIT RSB)+;
 
-type_list: INTLIT | FLOATLIT | BOOLEAN | STRINGLIT;
+type_list: INTLIT | FLOATLIT | (TRUE | FALSE) | STRINGLIT;
 
 // FUNCTION DECLARE
 func_declare: header_stm (paramater_stm)? body_stm;
 
 header_stm: FUNCTION COLON ID;
 paramater_stm: PARAMETER COLON paramater_list;
-paramater_list: (ID | ARRAY_ID) (COMMA paramater_list)
-	| (ID | ARRAY_ID);
+paramater_list: id_var (COMMA paramater_list) | id_var;
 body_stm: BODY COLON statement_list ENDBODY DOT;
-statement_list: statement (statement_list) | statement;
+statement_list: (statement)*;
+id_var: (ID | ARRAY_ID);
 
 statement:
 	var_declare
 	| func_declare
+	| assign_statement
 	| if_statement
 	| for_statement
 	| while_statement
+	| do_while_statement
 	| break_statement
 	| continue_statement
 	| function_call_statement
 	| return_statement;
+
+assign_statement: id_var ASSIGN expressions SEMI;
 
 // IF STATEMENT
 if_statement:
@@ -76,8 +80,9 @@ else_statement: ELSE statement_list;
 // FOR STATEMENT
 for_statement:
 	FOR LB for_condition RB DO statement_list ENDFOR DOT;
-for_condition: ((ID | ARRAY_ID) ASSIGN expressions) COMMA expressions COMMA (
-		(ID | ARRAY_ID) ASSIGN expressions
+for_condition: (id_var ASSIGN expressions) COMMA expressions COMMA (
+		(id_var ASSIGN expressions)
+		| expressions
 	);
 
 // WHILE STATEMENT
@@ -112,7 +117,8 @@ expressions:
 	| exp1 LESSOPDOT exp1
 	| exp1 LESSOREQUALOPDOT exp1
 	| exp1 GREATEROPDOT exp1
-	| exp1 GREATEOREQUALOPDOT exp1;
+	| exp1 GREATEOREQUALOPDOT exp1
+	| exp1;
 exp1: exp1 ANDOP exp2 | exp1 OROP exp2 | exp2;
 exp2:
 	exp2 ADDOP exp3
@@ -221,14 +227,15 @@ RP: '}';
 
 // LITERALS
 INTLIT: DEC | HEX | OCT;
-fragment DEC: ([1-9][0-9]+) | [0-9];
+fragment DEC: [1-9][0-9]+ | [0-9];
 fragment HEX: ([0][Xx][0-9]+) | ([0][Xx][A-F]+);
 fragment OCT: [0][Oo][0-7]+;
 
-SUBFLOATLIT: INTLIT [Ee]? [+-]? INTLIT?;
-FLOATLIT: SUBFLOATLIT '.' SUBFLOATLIT?;
+FLOATLIT: (INTLIT [Ee]? [+-]? INTLIT?) '.'? (
+		INTLIT [Ee]? [+-]? INTLIT?
+	)?;
 
-BOOLEAN: TRUE | FALSE;
+// fragment BOOLEAN: TRUE | FALSE;
 
 // STRING
 STRINGLIT:
@@ -243,7 +250,7 @@ fragment STR_CHAR_QUOTE: '\'"';
 fragment INTLIT_LIST: INTLIT (COMMA INTLIT)*;
 fragment FLOATLIT_LIST: FLOATLIT (COMMA FLOATLIT)*;
 fragment STRING_LIST: STRINGLIT ( COMMA STRINGLIT)*;
-fragment BOOLEAN_LIST: BOOLEAN (COMMA BOOLEAN)*;
+fragment BOOLEAN_LIST: (TRUE | FALSE) (COMMA (TRUE | FALSE))*;
 
 ARRAY: (LP INTLIT_LIST RP)
 	| ( LP FLOATLIT_LIST RP)

@@ -69,8 +69,18 @@ class BKITVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by BKITParser#id_var.
+    def visitId_var(self, ctx:BKITParser.Id_varContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by BKITParser#statement.
     def visitStatement(self, ctx:BKITParser.StatementContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by BKITParser#assign_statement.
+    def visitAssign_statement(self, ctx:BKITParser.Assign_statementContext):
         return self.visitChildren(ctx)
 
 
