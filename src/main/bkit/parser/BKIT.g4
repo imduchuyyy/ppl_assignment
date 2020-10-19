@@ -40,7 +40,12 @@ array_declare: ARRAY_ID | (ARRAY_ID ASSIGN ARRAY);
 
 ARRAY_ID: ID (LSB INTLIT RSB)+;
 
-type_list: INTLIT | FLOATLIT | (TRUE | FALSE) | STRINGLIT;
+type_list:
+	INTLIT
+	| FLOATLIT
+	| (TRUE | FALSE)
+	| STRINGLIT
+	| ARRAY_ID;
 
 // FUNCTION DECLARE
 func_declare: header_stm (paramater_stm)? body_stm;

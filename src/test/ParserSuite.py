@@ -892,3 +892,282 @@ class ParserSuite(unittest.TestCase):
         """
         expect = "successful"
         self.assertTrue(TestParser.checkParser(input,expect,279))
+
+    def test_complex_if_statement_4(self):
+        input = """
+            Function: recursive
+            Parameter: n
+            Body:
+                print (n);
+                recursive(n -1);
+            EndBody.
+            Function: recursiveProgram
+            Body:
+                If 4.5 <=. foo() *. (3 *. 1.0) Then
+                    EndIf.
+            EndBody.
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.checkParser(input,expect,280))
+
+    def test_array_declare(self):
+        input = """
+            Function: recursive
+            Parameter: n
+            Body:
+                print (n);
+                recursive(n -1);
+            EndBody.
+            Function: recursiveProgram
+            Body:
+                Var: a[2] = {123,1};
+            EndBody.
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.checkParser(input,expect,281))
+    
+    def test_using_array(self):
+        input = """
+            Function: recursive
+            Parameter: n
+            Body:
+                print (n);
+                recursive(n -1);
+            EndBody.
+            Function: recursiveProgram
+            Body:
+                Var: a[2] = {123,1};
+                a[1] = 1;
+            EndBody.
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.checkParser(input,expect,282))
+    
+    def test_array_string(self):
+        input = """
+            Function: arrayFun
+            Parameter: array, n
+            Body:
+                Var: array[2] = {"hello","world"};
+            EndBody.
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.checkParser(input,expect,283))
+    
+    def test_array_string_1(self):
+        input = """
+            Function: arrayFun
+            Parameter: array, n
+            Body:
+                Var: array[2] = {"hell","world"};
+                array[0] = "hello";
+            EndBody.
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.checkParser(input,expect,284))
+    
+    def test_while_continue(self):
+        input = """
+            Function: arrayFun
+            Parameter: array, n
+            Body:
+                While array[1] == 3 Do Continue;
+                EndWhile.
+            EndBody.
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.checkParser(input,expect,285))
+        
+    def test_if_continue(self):
+        input = """
+            Function: arrayFun
+            Parameter: array, n
+            Body:
+                If array[1] == 3 Then Continue;
+                EndIf.
+            EndBody.
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.checkParser(input,expect,286))
+
+    def test_if_with_string(self):
+        input = """
+            Function: arrayFun
+            Parameter: array, n
+            Body:
+                If array[0] == "hello" Then array[1] = "world";
+                EndIf.
+            EndBody.
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.checkParser(input,expect,287))
+    
+    def test_array_boolean(self):
+        input = """
+            Function: arrayFun
+            Parameter: array, n
+            Body:
+                If array[0] == True Then array[1] = False;
+                EndIf.
+            EndBody.
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.checkParser(input,expect,288))
+    
+    def test_assign_boolean(self):
+        input = """
+            Function: arrayFun
+            Parameter: array, n
+            Body:
+                array[0] = True;
+            EndBody.
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.checkParser(input,expect,289))
+    
+    def test_logic(self):
+        input = """
+            Function: arrayFun
+            Parameter: array, n
+            Body:
+                array[0] = True;
+                array[0] = array[0] + 1; 
+            EndBody.
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.checkParser(input,expect,290))
+    
+    def test_many_while(self):
+        input = """
+            Function: arrayFun
+            Parameter: array, n
+            Body:
+                While 1 == 1 Do a = 1 + 1;
+                    While 1 == 1 Do a = 1 + 1;
+                        While 1 == 1 Do a = 1 + 1;
+                            While 1 == 1 Do a = 1 + 1;
+                            EndWhile.
+                        EndWhile.
+                    EndWhile.
+                EndWhile.
+            EndBody.
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.checkParser(input,expect,291))
+    
+    def test_simple_function_2(self):
+        input = """
+            Function: arrayFun
+            Parameter: array, n
+            Body:
+                a = 1;
+            EndBody.
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.checkParser(input,expect,292))
+    
+    def test_simple_function_3(self):
+        input = """
+            Function: arrayFun
+            Parameter: array, n
+            Body:
+                x = "hello";
+            EndBody.
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.checkParser(input,expect,293))
+    
+    def test_simple_function_4(self):
+        input = """
+            Function: arrayFun
+            Parameter: array, n
+            Body:
+                x = "hello";
+                y = 1.1;
+                z = x + y;
+            EndBody.
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.checkParser(input,expect,294))
+    
+    def test_simple_function_5(self):
+        input = """
+            Function: arrayFun
+            Parameter: array, n
+            Body:
+                Var: x = 1;
+                x = array[1];
+            EndBody.
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.checkParser(input,expect,295))
+    
+    def test_print_array(self):
+        input = """
+            Function: arrayFun
+            Parameter: array, n
+            Body:
+                Var: x = 0, temp;
+                While x <= n Do 
+                    temp = array[x];
+                    print(temp);
+                EndWhile.
+            EndBody.
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.checkParser(input,expect,296))
+    
+    def test_search_array(self):
+        input = """
+            Function: arrayFun
+            Parameter: array, n, target
+            Body:
+                Var: x, temp;
+                x = 0 ;
+                While x <= n Do 
+                    If array[x] == target Then print(x);
+                    EndIf.
+                EndWhile.
+            EndBody.
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.checkParser(input,expect,297))
+    
+    def test_plus_array(self):
+        input = """
+            Function: arrayFun
+            Parameter: array, n, target
+            Body:
+                Var: x, temp;
+                x = 0 ;
+                While x <= n Do 
+                    x = array[x];
+                EndWhile.
+            EndBody.
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.checkParser(input,expect,298))
+    
+    def test_while_break(self):
+        input = """
+            Function: arrayFun
+            Parameter: array, n, target
+            Body:
+                While x <= n Do 
+                    Break;
+                EndWhile.
+            EndBody.
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.checkParser(input,expect,299))
+    
+    def test_done_function(self):
+        input = """
+            Function: arrayFun
+            Parameter: array, n, target
+            Body:
+                print("Done Parser!");
+            EndBody.
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.checkParser(input,expect,300))
